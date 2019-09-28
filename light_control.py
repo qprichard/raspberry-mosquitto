@@ -1,13 +1,14 @@
 import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
+import random
 
 sense = SenseHat()
 topic = "house/main-light"
-broker_address = "127.0.0.1"
+broker_address = "10.100.97.231"
 sense.clear()
 
 w = (150,150,150)
-b = (0,0,0)
+b = (0,0,255)
 
 white = [
 w,w,w,w,w,w,w,w,
@@ -34,12 +35,8 @@ b,b,b,b,b,b,b,b,
 def on_message(client, userdata, message):
 	msg = message.payload.decode("utf-8")
 	print('new message received '+ msg)
-	if msg == "ON":
-		sense.set_pixels(white)
-	elif msg == "OFF":
-		sense.set_pixels(black)
-	else:
-		sense.show_message('Error Message', 0.1, (255,255,255), (0,0,0))
+	print(random.randint(0,255))
+	sense.show_letter(msg,(255,0,0), (random.randint(0,255),random.randint(0,255),random.randint(0,255)))
 
 
 client = mqtt.Client("main-light")
@@ -48,3 +45,5 @@ client.connect(broker_address)
 client.subscribe(topic)
 
 client.loop_forever()
+
+sense.clear()

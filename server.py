@@ -7,10 +7,10 @@ topic= "house/main-light"
 client =  mqtt.Client("client")
 
 client.connect(broker_address)
-msg = "ON"
+msg = "1"
 
 while True:
 	sleep(3)
 	client.publish("house/main-light", msg)
-	msg = "OFF" if msg == "ON" else "ON"
+	msg = "0" if msg == "1" else "1"
 
