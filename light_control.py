@@ -1,42 +1,34 @@
 import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
-import random
+import json
 
 sense = SenseHat()
-topic = "house/main-light"
-broker_address = "10.100.97.231"
+topic = "lights/light1"
+broker_address = "192.168.1.67"
 sense.clear()
-
-w = (150,150,150)
-b = (0,0,255)
-
-white = [
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-w,w,w,w,w,w,w,w,
-]
-
-black = [
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-b,b,b,b,b,b,b,b,
-]
 
 def on_message(client, userdata, message):
 	msg = message.payload.decode("utf-8")
 	print('new message received '+ msg)
-	print(random.randint(0,255))
-	sense.show_letter(msg,(255,0,0), (random.randint(0,255),random.randint(0,255),random.randint(0,255)))
+
+	msg = json.loads(msg)
+	r = msg.get('r',0)
+	g = msg.get('g',0)
+	b = msg.get('b',0)
+	c = (r,g,b)
+	print(c)
+	pattern = [
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	c,c,c,c,c,c,c,c,
+	]
+
+	sense.set_pixels(pattern)
 
 
 client = mqtt.Client("main-light")
