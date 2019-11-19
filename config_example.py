@@ -1,1 +1,4 @@
 COAP_HOST = ""
+
+BROKER_HOST = ""
+BROKER_TOPIC = ""
