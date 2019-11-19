@@ -38,10 +38,15 @@ def on_message(client, userdata, message):
 			print(f"{sensor_request}: {result}")
 
 			my_client = mqtt.Client("my_response")
+			print("client")
 			my_client.username_pw_set(username=BROKER_USER, password=BROKER_PWD)
+			print("user pwd")
 			my_client.connect(broker_address)
+			print("connect")
 			my_client.publish(f"my_raspberry/{sensor_request}", { sensor_request: result })
+			print("publish")
 			my_client.disconnect()
+			print("disconnect")
 		except:
 			print(f"The current request does not exist: {sensor_request}")
 	sense.set_pixels(pattern)
