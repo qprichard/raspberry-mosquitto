@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
 import json
 
-from config import SERVER_HOST, BROKER_TOPIC
+from config import SERVER_HOST, BROKER_TOPIC, BROKER_USER, BROKER_PWD
 
 sense = SenseHat()
 topic = BROKER_TOPIC
@@ -34,6 +34,7 @@ def on_message(client, userdata, message):
 
 
 client = mqtt.Client("main-light")
+client.username_pw_set(username=BROKER_USER, password=BROKER_PWD)
 client.on_message = on_message
 client.connect(broker_address)
 client.subscribe(topic)
