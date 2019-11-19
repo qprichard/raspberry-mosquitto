@@ -5,8 +5,8 @@ import json
 from config import BROKER_HOST, BROKER_TOPIC
 
 sense = SenseHat()
-topic = BROKER_HOST
-broker_address = BROKER_TOPIC
+topic = BROKER_TOPIC
+broker_address = BROKER_HOST
 sense.clear()
 
 def on_message(client, userdata, message):
