@@ -2,7 +2,7 @@ import logging
 
 from asyncio import *
 from aiocoap import *
-from config import COAP_HOST
+from config import SERVER_HOST
 
 logging.basicConfig(level=logging.INFO)
 

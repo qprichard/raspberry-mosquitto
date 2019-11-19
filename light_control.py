@@ -2,11 +2,11 @@ import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
 import json
 
-from config import BROKER_HOST, BROKER_TOPIC
+from config import SERVER_HOST, BROKER_TOPIC
 
 sense = SenseHat()
 topic = BROKER_TOPIC
-broker_address = BROKER_HOST
+broker_address = SERVER_HOST
 sense.clear()
 
 def on_message(client, userdata, message):

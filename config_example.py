@@ -1,4 +1,2 @@
-COAP_HOST = ""
-
-BROKER_HOST = ""
+SERVER_HOST = ""
 BROKER_TOPIC = ""
