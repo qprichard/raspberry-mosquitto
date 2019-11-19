@@ -30,6 +30,14 @@ def on_message(client, userdata, message):
 	c,c,c,c,c,c,c,c,
 	]
 
+	sensor_request = msg.get('sensor_request', None)
+
+	if sensor_request is not None:
+		try:
+			result = sense[f"get_{sensor_request}"]()
+			print(f"{sensor_request}: {result}")
+		except:
+			print(f"The current request does not exist: {sensor_request}")
 	sense.set_pixels(pattern)
 
 
