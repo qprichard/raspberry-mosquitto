@@ -1,2 +1,4 @@
 env/
+env_3/
 __pycache__/
+config.py

@@ -4,7 +4,7 @@ import json
 
 sense = SenseHat()
 topic = "lights/light1"
-broker_address = "192.168.1.67"
+broker_address = "192.168.1.64"
 sense.clear()
 
 def on_message(client, userdata, message):

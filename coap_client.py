@@ -2,13 +2,14 @@ import logging
 
 from asyncio import *
 from aiocoap import *
+from config import COAP_HOST
 
 logging.basicConfig(level=logging.INFO)
 
 async def get():
     protocol = await Context.create_client_context()
 
-    request = Message(code=GET, uri="coap://localhost/time")
+    request = Message(code=GET, uri= f"coap://{COAP_HOST}/time")
 
     try:
         response = await protocol.request(request).response
@@ -26,7 +27,7 @@ async def put():
     await sleep(2)
 
     payload = b"I hope this will not break the internet..."
-    request = Message(code=PUT, payload=payload, uri="coap://localhost/other/block")
+    request = Message(code=PUT, payload=payload, uri=f"coap://{COAP_HOST}/other/block")
 
     response = await context.request(request).response
 
