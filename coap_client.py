@@ -21,7 +21,7 @@ async def get(sensor):
         print(e)
     else:
         print(f"Result: {response.code} \n {response.payload}")
-
+        return response.payload
 
 async def put(sensor, value):
     context = await Context.create_client_context()
@@ -32,7 +32,7 @@ async def put(sensor, value):
     response = await context.request(request).response
 
     print(f"Result: {response.code} \n {response.payload}")
-
+    return response.payload
 # if __name__ == "__main__":
 #     get_event_loop().run_until_complete(get('pression'))
 #     #get_event_loop().run_until_complete(put('pression', 12))
